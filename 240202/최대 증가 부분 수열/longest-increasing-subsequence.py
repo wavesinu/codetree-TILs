@@ -1,6 +1,5 @@
 import sys
 
-
 INT_MIN = -sys.maxsize
 
 n = int(sys.stdin.readline())
@@ -17,8 +16,11 @@ dp_initializer()
 
 # 최대 증가 부분 수열의 길이
 for i in range(1, n):
+    max_val = 0
     for j in range(0, i):
         if arr[i] > arr[j] and dp[i] < dp[j] + 1:
             dp[i] = dp[j] + 1
+            max_val = max(max_val, dp[i])
+    dp[i] = max_val
 
 print(max(dp))
